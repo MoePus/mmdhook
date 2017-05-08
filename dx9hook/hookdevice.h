@@ -80,7 +80,6 @@ static HRESULT WINAPI CreateDevice(
 	}
 	hookDevice();
 	hook->havestMMDExp();
-	D3DXCompileShader
 	hook->d3dx9->hookFunction("D3DXCreateTextureFromFileExW", (void*)d3dx9hookFunc::D3DXCreateTextureFromFileExW);
 	return res;
 }
