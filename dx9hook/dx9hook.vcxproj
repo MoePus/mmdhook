@@ -157,12 +157,15 @@
     <ClInclude Include="dx9hook.h" />
     <ClInclude Include="hookdevice.h" />
     <ClInclude Include="mmdexport.h" />
+    <ClInclude Include="MMDFormats\MikuMikuFormats\Pmx.h" />
+    <ClInclude Include="mmf.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="d3d9.cpp" />
     <ClCompile Include="mmdexport.cpp" />
+    <ClCompile Include="MMDFormats\MikuMikuFormats\Pmx.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

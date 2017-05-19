@@ -11,6 +11,7 @@
 #include <tchar.h>
 #include <future> 
 #include "d3dx9hook.h"
+#include "mmf.h"
 
 class d3d9hook
 {
@@ -62,11 +63,29 @@ public:
 	{
 		memcpy(&deviceVirtualFunctions, device->lpVtbl, sizeof(deviceVirtualFunctions));
 	}
+	void update()
+	{
+		int modelNums = mmd.ExpGetPmdNum();
+		int* modelMaterialNums = new int[modelNums];
+		int* modelOrders = new int[modelNums];
+		vector<string> modelNames; modelNames.resize(modelNums);
+		
+		for (int i = 0; i < modelNums; i++)
+		{
+			modelMaterialNums[i] = mmd.ExpGetPmdMatNum(i);
+			modelNames[i] = mmd.ExpGetPmdFilename(i);
+			modelOrders[i] = mmd.ExpGetPmdOrder(i);
+		}
+		mmf.updateFrame(modelNums, modelOrders, modelMaterialNums, modelNames);
+		delete modelMaterialNums;
+		delete modelOrders;
+	}
 
 	std::future<MMDEXP> mmdExpFuture;
 	d3dx9hook* d3dx9;
 	HINSTANCE hinst;
 	MMDEXP mmd;
+	MMF mmf;
 	/*Original DX Function*/
 	Direct3DCreate9 mDirect3DCreate9;
 	Direct3DCreate9Ex mDirect3DCreate9Ex;
